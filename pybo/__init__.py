@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 # from flaskext.markdown import Markdown
 
-import config
 
 naming_convection = {
     "ix" : 'ix_%(column_0_label)s',
@@ -19,7 +18,7 @@ migrate = Migrate()
 
 def create_app(): # create_app이 애플리케이션 팩토리임
     app = Flask(__name__)
-    app.config.from_object(config)
+    app.config.from_envvar('APP_CONFIG_FILE')
     
     # Markdown
     # Markdown(app, extensions = ['nl2br','fenced_code'])
